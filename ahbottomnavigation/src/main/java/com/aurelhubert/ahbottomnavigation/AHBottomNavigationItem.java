@@ -8,6 +8,9 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 /**
  * AHBottomNavigationItem
@@ -18,6 +21,8 @@ public class AHBottomNavigationItem {
 	private String title = "";
 	private Drawable drawable;
 	private int color = Color.GRAY;
+
+    public static final int DEFAULT_SIZE = 54;
 
 	private
 	@StringRes
@@ -112,6 +117,10 @@ public class AHBottomNavigationItem {
 		this.color = 0;
 	}
 
+	public @DrawableRes int getDrawable() {
+		return drawableRes;
+	}
+
 	public Drawable getDrawable(Context context) {
 		if (drawableRes != 0) {
 			return ContextCompat.getDrawable(context, drawableRes);
@@ -128,4 +137,8 @@ public class AHBottomNavigationItem {
 		this.drawable = drawable;
 		this.drawableRes = 0;
 	}
+
+    public void updateDrawable(Context context, ImageView target) {
+        Picasso.with(context).load(getDrawable()).resize(DEFAULT_SIZE, DEFAULT_SIZE).into(target);
+    }
 }

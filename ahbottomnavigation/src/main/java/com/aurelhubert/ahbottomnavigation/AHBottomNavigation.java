@@ -30,6 +30,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -277,7 +279,8 @@ public class AHBottomNavigation extends FrameLayout {
 			TextView title = (TextView) view.findViewById(R.id.bottom_navigation_item_title);
 			TextView notification = (TextView) view.findViewById(R.id.bottom_navigation_notification);
 
-			icon.setImageDrawable(item.getDrawable(context));
+            item.updateDrawable(context, icon);
+
 			title.setText(item.getTitle(context));
 
 			if (titleTypeface != null) {
@@ -381,7 +384,8 @@ public class AHBottomNavigation extends FrameLayout {
 			ImageView icon = (ImageView) view.findViewById(R.id.bottom_navigation_small_item_icon);
 			TextView title = (TextView) view.findViewById(R.id.bottom_navigation_small_item_title);
 			TextView notification = (TextView) view.findViewById(R.id.bottom_navigation_notification);
-			icon.setImageDrawable(item.getDrawable(context));
+
+            Picasso.with(context).load(item.getDrawable()).resize().into(icon);
 			title.setText(item.getTitle(context));
 
 			if (titleActiveTextSize != 0) {
