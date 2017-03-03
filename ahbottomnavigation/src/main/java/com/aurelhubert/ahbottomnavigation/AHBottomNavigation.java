@@ -385,7 +385,7 @@ public class AHBottomNavigation extends FrameLayout {
 			TextView title = (TextView) view.findViewById(R.id.bottom_navigation_small_item_title);
 			TextView notification = (TextView) view.findViewById(R.id.bottom_navigation_notification);
 
-            Picasso.with(context).load(item.getDrawable()).resize().into(icon);
+            Picasso.with(context).load(item.getDrawable()).resize(64, 64).into(icon);
 			title.setText(item.getTitle(context));
 
 			if (titleActiveTextSize != 0) {
