@@ -15,7 +15,7 @@ ext {
     siteUrl = 'https://github.com/aurelhubert/ahbottomnavigation'
     gitUrl = 'https://github.com/aurelhubert/ahbottomnavigation.git'
 
-    libraryVersion = '1.2.3'
+    libraryVersion = '2.0.5'
 
     developerId = 'aurelhubert'
     developerName = 'Aurelien Hubert'
@@ -28,12 +28,11 @@ ext {
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
-
+    buildToolsVersion '25.0.2'
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 30
+        versionCode 38
         versionName project.ext.libraryVersion
     }
     buildTypes {
@@ -54,7 +53,7 @@ dependencies {
 
 def libraryGroupId = 'com.conouch.view'
 def libraryArtifactId = 'bottom-navigation'
-def libraryVersion = '1.0.1'
+def libraryVersion = '2.0.0'
 
 group = publishedGroupId
 

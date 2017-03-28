@@ -1,12 +1,14 @@
 package com.aurelhubert.ahbottomnavigation;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.content.ContextCompat;
 import android.widget.ImageView;
 
@@ -40,7 +42,7 @@ public class AHBottomNavigationItem {
 	 * @param title    Title
 	 * @param resource Drawable resource
 	 */
-	public AHBottomNavigationItem(String title, int resource) {
+	public AHBottomNavigationItem(String title, @DrawableRes int resource) {
 		this.title = title;
 		this.drawableRes = resource;
 	}
@@ -51,7 +53,7 @@ public class AHBottomNavigationItem {
 	 * @param color    Background color
 	 */
 	@Deprecated
-	public AHBottomNavigationItem(String title, int resource, int color) {
+	public AHBottomNavigationItem(String title, @DrawableRes int resource, @ColorRes int color) {
 		this.title = title;
 		this.drawableRes = resource;
 		this.color = color;
@@ -68,6 +70,17 @@ public class AHBottomNavigationItem {
 		this.titleRes = titleRes;
 		this.drawableRes = drawableRes;
 		this.colorRes = colorRes;
+	}
+
+	/**
+	 * Constructor
+	 *
+	 * @param title    String
+	 * @param drawable Drawable
+	 */
+	public AHBottomNavigationItem(String title, Drawable drawable) {
+		this.title = title;
+		this.drawable = drawable;
 	}
 
 	/**
@@ -123,7 +136,11 @@ public class AHBottomNavigationItem {
 
 	public Drawable getDrawable(Context context) {
 		if (drawableRes != 0) {
-			return ContextCompat.getDrawable(context, drawableRes);
+			try {
+				return VectorDrawableCompat.create(context.getResources(), drawableRes, null);
+			}catch (Resources.NotFoundException e){
+				return ContextCompat.getDrawable(context, drawableRes);
+			}
 		}
 		return drawable;
 	}
