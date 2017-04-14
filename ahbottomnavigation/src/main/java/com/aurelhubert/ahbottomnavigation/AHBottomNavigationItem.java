@@ -156,6 +156,11 @@ public class AHBottomNavigationItem {
 	}
 
     public void updateDrawable(Context context, ImageView target) {
-        Picasso.with(context).load(getDrawable()).resize(DEFAULT_SIZE, DEFAULT_SIZE).into(target);
+		int resId = getDrawable();
+		if (resId > 0) {
+			Picasso.with(context).load(resId).resize(DEFAULT_SIZE, DEFAULT_SIZE).into(target);
+		} else {
+			target.setImageDrawable(getDrawable(context));
+		}
     }
 }

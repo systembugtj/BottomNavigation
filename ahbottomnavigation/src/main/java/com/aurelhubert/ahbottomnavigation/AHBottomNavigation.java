@@ -85,7 +85,6 @@ public class AHBottomNavigation extends FrameLayout {
 	private boolean colored = false;
 	private boolean selectedBackgroundVisible = false;
 	private boolean translucentNavigationEnabled;
-	private boolean isHidden = false;
 	private List<AHNotification> notifications = AHNotification.generateEmptyList(MAX_ITEMS);
 	private boolean isBehaviorTranslationSet = false;
 	private int currentItem = 0;
@@ -1205,7 +1204,6 @@ public class AHBottomNavigation extends FrameLayout {
 			if (needHideBottomNavigation) {
 				needHideBottomNavigation = false;
 				bottomNavigationBehavior.hideView(this, bottomNavigationHeight, hideBottomNavigationWithAnimation);
-				isHidden = true;
 			}
 		}
 	}
@@ -1235,7 +1233,6 @@ public class AHBottomNavigation extends FrameLayout {
 	 * @param withAnimation Boolean
 	 */
 	public void hideBottomNavigation(boolean withAnimation) {
-		isHidden = true;
 		if (bottomNavigationBehavior != null) {
 			bottomNavigationBehavior.hideView(this, bottomNavigationHeight, withAnimation);
 		} else if (getParent() instanceof CoordinatorLayout) {
@@ -1264,7 +1261,6 @@ public class AHBottomNavigation extends FrameLayout {
 	 * @param withAnimation Boolean
 	 */
 	public void restoreBottomNavigation(boolean withAnimation) {
-		isHidden = false;
 		if (bottomNavigationBehavior != null) {
 			bottomNavigationBehavior.resetOffset(this, withAnimation);
 		} else {
@@ -1513,7 +1509,7 @@ public class AHBottomNavigation extends FrameLayout {
 	 * Return if the Bottom Navigation is hidden or not
 	 */
 	public boolean isHidden() {
-		return isHidden;
+		return bottomNavigationBehavior.isHidden();
 	}
 
 	/**
